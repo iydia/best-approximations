@@ -64,6 +64,43 @@ double find_largest_delta() {
     return delta - 0.01; // Return the largest δ that satisfies the condition
 }
 
+// Function to compare sequences and find pairs (p, q) that appear in one sequence but not all of them
+void compare_xor(int pq1[][2], int pq2[][2], int pq3[][2]) {
+    int i = 0, j = 0, k = 0;
+    
+    printf("\nPairs that appear in one sequence but not all:\n");
+    
+    while (i < 100 || j < 100 || k < 100) {
+        if ((i < 100 && j < 100) && (pq1[i][0] == pq2[j][0] && pq1[i][1] == pq2[j][1])) {
+            // Pair (p, q) appears in sequences 1 and 2
+            i++;
+            j++;
+        } else if ((j < 100 && k < 100) && (pq2[j][0] == pq3[k][0] && pq2[j][1] == pq3[k][1])) {
+            // Pair (p, q) appears in sequences 2 and 3
+            j++;
+            k++;
+        } else if ((k < 100 && i < 100) && (pq3[k][0] == pq1[i][0] && pq3[k][1] == pq1[i][1])) {
+            // Pair (p, q) appears in sequences 3 and 1
+            k++;
+            i++;
+        } else {
+            // Pair (p, q) appears in only one sequence
+            if (i < 100) {
+                printf("(%d, %d) - Sequence 1\n", pq1[i][0], pq1[i][1]);
+                i++;
+            }
+            if (j < 100) {
+                printf("(%d, %d) - Sequence 2\n", pq2[j][0], pq2[j][1]);
+                j++;
+            }
+            if (k < 100) {
+                printf("(%d, %d) - Sequence 3\n", pq3[k][0], pq3[k][1]);
+                k++;
+            }
+        }
+    }
+}
+
 int main(void) {
 
     // Compute the first 100 terms of the sequence for ℓ(p, q) := |√2 − p/q|
@@ -79,6 +116,10 @@ int main(void) {
     // Compute the first 100 terms of the sequence for ℓ(p, q) := |2 - p/q|
     printf("\nUsing l_3:\n");
     best_approximations(l_3);
+
+    // Compare the sequences and find pairs (p, q) that appear in one sequence but not all of them
+    int pq1[100][2], pq2[100][2], pq3[100][2];
+    compare_xor(pq1, pq2, pq3);
 
 
     double largest_delta = find_largest_delta();
