@@ -1,0 +1,9 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/lydiahe/Downloads/DRP/best-approximations/main'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _l, symObjAddr: 0x0, symBinAddr: 0x100003E14, symSize: 0x2C }
+  - { offsetInCU: 0x48, offset: 0x48, size: 0x8, addend: 0x0, symName: _l, symObjAddr: 0x0, symBinAddr: 0x100003E14, symSize: 0x2C }
+  - { offsetInCU: 0x7E, offset: 0x7E, size: 0x8, addend: 0x0, symName: _best_approximations, symObjAddr: 0x2C, symBinAddr: 0x100003E40, symSize: 0x11C }
+  - { offsetInCU: 0xE8, offset: 0xE8, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x148, symBinAddr: 0x100003F5C, symSize: 0x2C }
+...
