@@ -9,21 +9,24 @@ double min(double a, double b) {
     }
 }
 
-int q1a_helper(double closest_approx, int p, int q) {
+int q1a_helper(double prev_closest_approx, int q) {
 
-    double new_closest_approx = closest_approx;
-    double bestp = p;
+    double closest_this_round = 1;
+    double bestp = 1;
 
-    for (double thisp = 1; thisp <= 142; ++thisp) {
-        if (fabs(thisp / q - sqrt(2)) < fabs(new_closest_approx - sqrt(2))) {
-            new_closest_approx = thisp/q;
+    for (double thisp = q; thisp <= 2*q; ++thisp) {
+        if (fabs((double)(thisp/q - sqrt(2))) < fabs((double)(closest_this_round - sqrt(2)))) {
+            closest_this_round = (double)thisp/q;
             bestp = thisp;
         }
     }
 
-    return bestp;
+    if (closest_this_round < prev_closest_approx) {
+        return bestp;
+    } else {
+        return 0;
+    }
 }
-
 
 // Prints each term of the sequence for (a)
 void print_q1a(int p, int q, double closest_approx) {
@@ -39,14 +42,12 @@ void q1a() {
 
     for (int q = 2; q <= 100; ++q) {
 
-        p = q1a_helper(closest_approx, p, q);
+        p = q1a_helper(closest_approx, q);
 
         closest_approx = fabs((double)p/q);
 
         print_q1a(p, q, closest_approx);
-
     }
-
 }
 
 int main(void) {
