@@ -1,0 +1,1 @@
+(double)(2 - closest_to_2))
